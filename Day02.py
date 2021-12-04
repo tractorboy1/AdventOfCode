@@ -19,9 +19,9 @@ class CoOrd():
 
 def parse_instruction(instruction: str) -> Optional[Movement]:
     m = re.match(r"(forward|down|up) (\d+)", instruction)
-    try:
+    if m:
         movement = Movement(direction=m.group(1), distance=int(m.group(2)))
-    except:
+    else:
         print(f"Unexpected instruction {instruction}")
         exit(1)
     return movement
