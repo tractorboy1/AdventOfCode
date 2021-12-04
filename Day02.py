@@ -17,7 +17,7 @@ class CoOrd():
     x: int
     depth: int
 
-def parse_instruction(instruction: str) -> Optional[Movement]:
+def parse_instruction(instruction: str) -> Movement:
     m = re.match(r"(forward|down|up) (\d+)", instruction)
     if m:
         movement = Movement(direction=m.group(1), distance=int(m.group(2)))
