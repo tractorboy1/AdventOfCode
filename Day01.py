@@ -1,17 +1,22 @@
 #!/usr/bin/python3
 
-def get_increase_count(measures : str) -> int:
+from typing import List
+
+def convert_str_to_list(measures : str) -> List[int]:
     depth_str_list = measures.split("\n")
     depth_list = [ int(depth) for depth in depth_str_list if depth != "" ]
-    previous = depth_list[0]
+    return depth_list
+
+# Window increases when n+xth > nth
+def get_increase_count(depth_list : List[int], window_size : int = 1) -> int:
     increase_count = 0
-    for i in range(1, len(depth_list)):
-        if depth_list[i] > previous:
+    for i in range(window_size, len(depth_list)):
+        if depth_list[i] > depth_list[i-window_size]:
             increase_count += 1
-        previous = depth_list[i]
 
     print(increase_count)
     return increase_count
+
 
 measures = """
 100
@@ -2016,5 +2021,6 @@ measures = """
 10044
 """
 
-
-get_increase_count(measures)
+depth_list = convert_str_to_list(measures)
+get_increase_count(depth_list)
+get_increase_count(depth_list, window_size=3)
