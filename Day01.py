@@ -2,9 +2,6 @@
 
 from typing import List
 
-with open("Day01.txt", "r") as f:
-    measures = f.read()
-
 def convert_str_to_list(measures : str) -> List[int]:
     depth_str_list = measures.split("\n")
     depth_list = [ int(depth) for depth in depth_str_list if depth != "" ]
@@ -20,6 +17,8 @@ def get_increase_count(depth_list : List[int], window_size : int = 1) -> int:
     print(increase_count)
     return increase_count
 
+with open("Day01.txt", "r") as f:
+    measures = f.read()
 
 depth_list = convert_str_to_list(measures)
 get_increase_count(depth_list)
