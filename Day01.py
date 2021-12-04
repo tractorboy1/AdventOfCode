@@ -1,5 +1,18 @@
 #!/usr/bin/python3
 
+def get_increase_count(measures : str) -> int:
+    depth_str_list = measures.split("\n")
+    depth_list = [ int(depth) for depth in depth_str_list if depth != "" ]
+    previous = depth_list[0]
+    increase_count = 0
+    for i in range(1, len(depth_list)):
+        if depth_list[i] > previous:
+            increase_count += 1
+        previous = depth_list[i]
+
+    print(increase_count)
+    return increase_count
+
 measures = """
 100
 125
@@ -2003,14 +2016,5 @@ measures = """
 10044
 """
 
-depth_str_list = measures.split("\n")
-depth_list = [ int(depth) for depth in depth_str_list if depth != "" ]
-previous = depth_list[0]
-increase_count = 0
-for i in range(1, len(depth_list)):
-    if depth_list[i] > previous:
-        increase_count += 1
-    previous = depth_list[i]
 
-print(increase_count)
-
+get_increase_count(measures)
